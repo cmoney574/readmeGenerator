@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+const markdown = require('./utils/generateMarkdown')
 
 // TODO: Create an array of questions for user input
 const questions = ["Title: ", "Description: ", "Table of Contents: ", "Installation: ", 
@@ -9,7 +10,7 @@ const questions = ["Title: ", "Description: ", "Table of Contents: ", "Installat
 // TODO: Create a function to write README file
 const writeToFile = ({ title, description, toc, install, usage, liscence, contribute, test, questions }) =>
     `# ${title}
-
+![GitHub license](https://img.shields.io/badge/license-${liscence}-blue.svg)
 ## Description: 
 ${description}
 
@@ -68,9 +69,10 @@ inquirer
       message: questions[4],
   },
   {
-      type: 'input',
+      type: 'list',
       name: 'liscence',
       message: questions[5],
+      choices: ['MIT', 'Apache 2.0', 'None']
   },
   {
       type: 'input',
